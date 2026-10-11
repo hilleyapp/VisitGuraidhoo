@@ -792,6 +792,7 @@ Welcome to Guraidhoo Island
             <img src="hilaytv-logo.png" alt="Hilay TV Play Icon" class="tv-logo-img" />
             <strong>Enjoy Live TV While on the Go</strong>
             <span>Stream your favorite channels & shows live on board</span>
+            <span style="font-size: 0.68rem; opacity: 0.75; margin-top: 0.3rem;">Powered by HilayTV</span>
           </a>
         </div>
       </div>
