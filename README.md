@@ -282,16 +282,27 @@ Welcome to Guraidhoo Island
     .map-info .dot.guraidhoo { background: #1E88E5; }
     .map-info .dot.route { background: #FFB300; width: 18px; height: 3px; border-radius: 2px; }
 
-    /* Live Tracking */
-    .live-tracking {
+    /* Live Tracking & Entertainment Grid */
+    .tracking-entertainment-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
       margin: 1.4rem 0 0.5rem;
+    }
+    @media (max-width: 768px) {
+      .tracking-entertainment-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .live-tracking, .entertainment-box {
       background: var(--card);
       border-radius: 14px;
       box-shadow: var(--shadow);
       padding: 1.2rem 1.3rem;
       border: 1.5px solid var(--border);
     }
-    .live-tracking h2 {
+    .live-tracking h2, .entertainment-box h2 {
       font-size: 0.85rem;
       text-transform: uppercase;
       letter-spacing: 0.8px;
@@ -316,18 +327,18 @@ Welcome to Guraidhoo Island
     }
     .live-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 0.7rem;
     }
     .live-btn {
       display: flex;
       align-items: center;
-      gap: 0.7rem;
-      padding: 0.75rem 1rem;
+      gap: 0.6rem;
+      padding: 0.65rem 0.8rem;
       border-radius: 10px;
       text-decoration: none;
       font-weight: 600;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       border: 1.5px solid var(--border);
       background: var(--bg);
       color: var(--text);
@@ -338,14 +349,14 @@ Welcome to Guraidhoo Island
       border-color: var(--accent);
     }
     .live-btn .icon, .live-btn .logo-img {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 700;
       flex-shrink: 0;
       object-fit: cover;
@@ -355,7 +366,7 @@ Welcome to Guraidhoo Island
     .live-btn small {
       display: block;
       font-weight: 400;
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       opacity: 0.8;
       margin-top: 1px;
     }
@@ -368,6 +379,40 @@ Welcome to Guraidhoo Island
     }
     .live-note a { color: var(--accent); text-decoration: none; }
     .live-note a:hover { text-decoration: underline; }
+
+    /* TV Button styling */
+    .tv-promo-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      background: linear-gradient(135deg, rgba(230, 81, 0, 0.1), rgba(26, 107, 154, 0.1));
+      border: 2px dashed var(--accent);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text);
+      transition: transform 0.15s, background 0.15s;
+      height: 100%;
+    }
+    .tv-promo-btn:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, rgba(230, 81, 0, 0.15), rgba(26, 107, 154, 0.15));
+    }
+    .tv-promo-btn .tv-icon {
+      font-size: 2.2rem;
+      margin-bottom: 0.4rem;
+    }
+    .tv-promo-btn strong {
+      font-size: 1rem;
+      color: var(--primary);
+      margin-bottom: 0.2rem;
+    }
+    .tv-promo-btn span {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
 
     .section-title {
       display: flex;
@@ -697,30 +742,40 @@ Welcome to Guraidhoo Island
       </div>
     </div>
 
-    <!-- Live Tracking -->
-    <div class="live-tracking">
-      <h2><span class="live-dot"></span> Live Tracking (FollowMe)</h2>
-      <div class="live-grid">
-        <a class="live-btn escape" href="https://m.followme.mv/public/?s=ESCAPE" target="_blank" rel="noopener">
-          <img src="escape-logo.jpg" alt="Escape" class="logo-img" />
-          <div>Escape Ferries<small>Queen · Wing · King</small></div>
-        </a>
-        <a class="live-btn vmarine" href="https://m.followme.mv/public/?s=V%20Marine" target="_blank" rel="noopener">
-          <img src="vmarine-logo.jpg" alt="V Marine" class="logo-img" />
-          <div>V Marine<small>V Marine 1 · 2 · 3</small></div>
-        </a>
-        <a class="live-btn hawks" href="https://m.followme.mv/public/?s=HAWKS" target="_blank" rel="noopener">
-          <img src="hawks-logo.jpg" alt="Hawks" class="logo-img" />
-          <div>Hawks Ferries<small>Daisy · Ivy</small></div>
-        </a>
-        <a class="live-btn all" href="https://m.followme.mv/public/" target="_blank" rel="noopener">
-          <div class="icon">✈</div>
-          <div>All Public Vessels<small>Full FollowMe map</small></div>
+    <!-- Live Tracking & Onboard Entertainment Grid -->
+    <div class="tracking-entertainment-grid">
+      <!-- Live Tracking -->
+      <div class="live-tracking">
+        <h2><span class="live-dot"></span> Live Tracking</h2>
+        <div class="live-grid">
+          <a class="live-btn escape" href="https://m.followme.mv/public/?s=ESCAPE" target="_blank" rel="noopener">
+            <img src="escape-logo.jpg" alt="Escape" class="logo-img" />
+            <div>Escape<small>Queen · Wing</small></div>
+          </a>
+          <a class="live-btn vmarine" href="https://m.followme.mv/public/?s=V%20Marine" target="_blank" rel="noopener">
+            <img src="vmarine-logo.jpg" alt="V Marine" class="logo-img" />
+            <div>V Marine<small>V Marine 1-3</small></div>
+          </a>
+          <a class="live-btn hawks" href="https://m.followme.mv/public/?s=HAWKS" target="_blank" rel="noopener">
+            <img src="hawks-logo.jpg" alt="Hawks" class="logo-img" />
+            <div>Hawks<small>Daisy · Ivy</small></div>
+          </a>
+          <a class="live-btn all" href="https://m.followme.mv/public/" target="_blank" rel="noopener">
+            <div class="icon">✈</div>
+            <div>All Vessels<small>FollowMe map</small></div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Onboard Entertainment / Live TV -->
+      <div class="entertainment-box">
+        <h2>📺 Onboard Entertainment</h2>
+        <a class="tv-promo-btn" href="https://hilaytv.xyz/" target="_blank" rel="noopener">
+          <div class="tv-icon">📺</div>
+          <strong>Enjoy Live TV While on the Go</strong>
+          <span>Stream your favorite channels & shows live on board</span>
         </a>
       </div>
-      <p class="live-note">
-        Real-time positions powered by <a href="https://followme.mv" target="_blank" rel="noopener">FollowMe Maldives</a>.
-      </p>
     </div>
 
     <div id="to-male-section">
