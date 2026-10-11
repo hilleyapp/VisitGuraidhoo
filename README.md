@@ -1,4 +1,4 @@
-Welcome to Guraidhoo
+
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -23,7 +23,18 @@ Welcome to Guraidhoo
       --shadow: 0 4px 20px rgba(11, 61, 92, 0.08);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    [data-theme="dark"] {
+      --primary: #1A6B9A;
+      --accent: #2980B9;
+      --bg: #0F172A;
+      --card: #1E293B;
+      --text: #F8FAFC;
+      --muted: #94A3B8;
+      --border: #334155;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; transition: background 0.2s, color 0.2s, border-color 0.2s; }
 
     body {
       font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -40,6 +51,7 @@ Welcome to Guraidhoo
       padding: 1.8rem 1.5rem 1.4rem;
       text-align: center;
       box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      position: relative;
     }
     header h1 {
       font-size: 1.75rem;
@@ -52,6 +64,25 @@ Welcome to Guraidhoo
       opacity: 0.9;
       font-weight: 400;
     }
+
+    /* Theme Toggle */
+    .theme-toggle {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .theme-toggle:hover { background: rgba(255, 255, 255, 0.3); }
 
     /* Controls */
     .controls {
@@ -71,6 +102,7 @@ Welcome to Guraidhoo
       gap: 1rem;
       align-items: center;
       justify-content: center;
+      border: 1px solid var(--border);
     }
     .control-group {
       display: flex;
@@ -84,12 +116,12 @@ Welcome to Guraidhoo
       letter-spacing: 0.6px;
       color: var(--muted);
     }
-    select, .day-btns {
+    select, input[type="text"], .day-btns {
       display: flex;
       gap: 0.35rem;
       flex-wrap: wrap;
     }
-    select {
+    select, input[type="text"] {
       appearance: none;
       background: var(--bg);
       border: 1.5px solid var(--border);
@@ -103,7 +135,12 @@ Welcome to Guraidhoo
       background-position: right 0.7rem center;
       min-width: 140px;
     }
-    select:focus {
+    input[type="text"] {
+      background-image: none;
+      padding-right: 0.8rem;
+      min-width: 160px;
+    }
+    select:focus, input[type="text"]:focus {
       outline: none;
       border-color: var(--accent);
       box-shadow: 0 0 0 3px rgba(26, 107, 154, 0.15);
@@ -111,7 +148,7 @@ Welcome to Guraidhoo
 
     .day-btn {
       border: 1.5px solid var(--border);
-      background: white;
+      background: var(--card);
       color: var(--text);
       border-radius: 8px;
       padding: 0.4rem 0.7rem;
@@ -155,6 +192,25 @@ Welcome to Guraidhoo
       border: 2px solid var(--border);
       z-index: 1;
     }
+    .map-controls {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 0.8rem;
+    }
+    .sim-btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    .sim-btn:hover { background: var(--accent); }
+
     .map-info {
       display: flex;
       justify-content: center;
@@ -178,7 +234,6 @@ Welcome to Guraidhoo
     .map-info .dot.guraidhoo { background: #1E88E5; }
     .map-info .dot.route { background: #FFB300; width: 18px; height: 3px; border-radius: 2px; }
 
-
     /* Live Tracking */
     .live-tracking {
       margin: 1.4rem 0 0.5rem;
@@ -186,7 +241,7 @@ Welcome to Guraidhoo
       border-radius: 14px;
       box-shadow: var(--shadow);
       padding: 1.2rem 1.3rem;
-      border: 1.5px solid #E3F2FD;
+      border: 1.5px solid var(--border);
     }
     .live-tracking h2 {
       font-size: 0.85rem;
@@ -225,32 +280,14 @@ Welcome to Guraidhoo
       text-decoration: none;
       font-weight: 600;
       font-size: 0.9rem;
-      transition: transform 0.15s, box-shadow 0.15s;
-      border: 1.5px solid transparent;
+      border: 1.5px solid var(--border);
+      background: var(--bg);
+      color: var(--text);
     }
     .live-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 4px 14px rgba(0,0,0,0.1);
-    }
-    .live-btn.escape {
-      background: #E3F2FD;
-      color: var(--escape);
-      border-color: #90CAF9;
-    }
-    .live-btn.vmarine {
-      background: #E0F2F1;
-      color: var(--vmarine);
-      border-color: #80CBC4;
-    }
-    .live-btn.hawks {
-      background: #FFF3E0;
-      color: var(--hawks);
-      border-color: #FFCC80;
-    }
-    .live-btn.all {
-      background: #F3E5F5;
-      color: #7B1FA2;
-      border-color: #CE93D8;
+      border-color: var(--accent);
     }
     .live-btn .icon {
       width: 32px;
@@ -282,20 +319,22 @@ Welcome to Guraidhoo
       margin-top: 0.85rem;
       line-height: 1.4;
     }
-    .live-note a {
-      color: var(--accent);
-      text-decoration: none;
-    }
+    .live-note a { color: var(--accent); text-decoration: none; }
     .live-note a:hover { text-decoration: underline; }
 
     .section-title {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      justify-content: space-between;
       margin: 1.5rem 0 0.9rem;
       font-size: 1.05rem;
       font-weight: 700;
       color: var(--primary);
+    }
+    .section-title-left {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
     }
     .section-title .arrow {
       background: var(--primary);
@@ -304,6 +343,13 @@ Welcome to Guraidhoo
       padding: 0.2rem 0.55rem;
       border-radius: 6px;
       font-weight: 600;
+    }
+    .count-badge {
+      font-size: 0.75rem;
+      background: var(--border);
+      color: var(--muted);
+      padding: 0.15rem 0.5rem;
+      border-radius: 10px;
     }
 
     .cards {
@@ -317,6 +363,7 @@ Welcome to Guraidhoo
       border-radius: 12px;
       box-shadow: var(--shadow);
       overflow: hidden;
+      border: 1px solid var(--border);
       border-top: 4px solid transparent;
       transition: transform 0.15s ease, box-shadow 0.15s ease;
     }
@@ -372,15 +419,16 @@ Welcome to Guraidhoo
       padding: 0.25rem 0.6rem;
       border-radius: 6px;
       margin-top: 0.35rem;
+      border: 1px solid var(--border);
     }
     .days-badge.daily {
-      background: #E8F5E9;
+      background: rgba(46, 125, 50, 0.1);
       color: #2E7D32;
+      border-color: rgba(46, 125, 50, 0.2);
     }
     .card.next-ferry {
       border-top-width: 5px;
       box-shadow: 0 0 0 2px #FF6F00, 0 8px 28px rgba(255, 111, 0, 0.2);
-      position: relative;
     }
     .next-badge {
       display: inline-block;
@@ -393,11 +441,6 @@ Welcome to Guraidhoo
       margin-left: 0.4rem;
       text-transform: uppercase;
       letter-spacing: 0.4px;
-      animation: pulse-badge 1.6s ease-in-out infinite;
-    }
-    @keyframes pulse-badge {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.7; }
     }
     .next-ferry-banner {
       background: linear-gradient(135deg, #FF6F00, #FF8F00);
@@ -435,12 +478,26 @@ Welcome to Guraidhoo
       padding: 3rem 1rem;
       color: var(--muted);
       grid-column: 1 / -1;
+      background: var(--card);
+      border-radius: 12px;
+      border: 1px solid var(--border);
     }
     .empty-state svg {
       width: 48px;
       height: 48px;
       margin-bottom: 0.8rem;
       opacity: 0.4;
+    }
+    .reset-filter-btn {
+      margin-top: 0.8rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      padding: 0.4rem 0.9rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      font-weight: 600;
     }
 
     /* Contacts */
@@ -450,6 +507,7 @@ Welcome to Guraidhoo
       border-radius: 14px;
       box-shadow: var(--shadow);
       padding: 1.3rem;
+      border: 1px solid var(--border);
     }
     .contacts h3 {
       font-size: 0.85rem;
@@ -471,9 +529,10 @@ Welcome to Guraidhoo
       padding: 0.7rem 0.9rem;
       border-radius: 10px;
       text-decoration: none;
-      transition: background 0.15s;
+      border: 1px solid var(--border);
+      background: var(--bg);
     }
-    .contact-item:hover { background: var(--bg); }
+    .contact-item:hover { border-color: var(--accent); }
     .contact-item .icon {
       width: 36px;
       height: 36px;
@@ -507,19 +566,6 @@ Welcome to Guraidhoo
       color: var(--muted);
     }
 
-    /* Leaflet marker customization */
-    .custom-marker {
-      background: white;
-      border-radius: 50%;
-      border: 3px solid;
-      width: 18px !important;
-      height: 18px !important;
-      margin-left: -9px !important;
-      margin-top: -9px !important;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    }
-
-    /* Responsive */
     @media (max-width: 600px) {
       header h1 { font-size: 1.4rem; }
       .controls-inner { flex-direction: column; align-items: stretch; }
@@ -531,6 +577,7 @@ Welcome to Guraidhoo
 </head>
 <body>
   <header>
+    <button class="theme-toggle" id="theme-toggle">🌙 Dark</button>
     <h1>Ferry Schedule</h1>
     <p>Guraidhoo ↔ Male</p>
   </header>
@@ -555,6 +602,10 @@ Welcome to Guraidhoo
         </select>
       </div>
       <div class="control-group">
+        <label>Quick Search</label>
+        <input type="text" id="search-input" placeholder="Search time or operator..." />
+      </div>
+      <div class="control-group">
         <label>Day</label>
         <div class="day-btns" id="day-btns">
           <button class="day-btn all-btn active" data-day="all">All</button>
@@ -572,10 +623,14 @@ Welcome to Guraidhoo
 
   <main>
     <div id="next-ferry-banner" class="next-ferry-banner hidden"></div>
+    
     <!-- Interactive Map -->
     <div class="map-section">
       <h2>Ferry Route Map</h2>
       <div id="map"></div>
+      <div class="map-controls">
+        <button class="sim-btn" id="sim-btn">▶ Simulate Ferry Trip</button>
+      </div>
       <div class="map-info">
         <span><span class="dot male"></span> Malé</span>
         <span><span class="dot guraidhoo"></span> Guraidhoo</span>
@@ -583,55 +638,44 @@ Welcome to Guraidhoo
       </div>
     </div>
 
-    <!-- Live Tracking via FollowMe -->
+    <!-- Live Tracking -->
     <div class="live-tracking">
       <h2><span class="live-dot"></span> Live Tracking (FollowMe)</h2>
       <div class="live-grid">
         <a class="live-btn escape" href="https://m.followme.mv/public/?s=ESCAPE" target="_blank" rel="noopener">
           <div class="icon">E</div>
-          <div>
-            Escape Ferries
-            <small>Queen · Wing · King</small>
-          </div>
+          <div>Escape Ferries<small>Queen · Wing · King</small></div>
         </a>
         <a class="live-btn vmarine" href="https://m.followme.mv/public/?s=V%20Marine" target="_blank" rel="noopener">
           <div class="icon">V</div>
-          <div>
-            V Marine
-            <small>V Marine 1 · 2 · 3</small>
-          </div>
+          <div>V Marine<small>V Marine 1 · 2 · 3</small></div>
         </a>
         <a class="live-btn hawks" href="https://m.followme.mv/public/?s=HAWKS" target="_blank" rel="noopener">
           <div class="icon">H</div>
-          <div>
-            Hawks Ferries
-            <small>Daisy · Ivy</small>
-          </div>
+          <div>Hawks Ferries<small>Daisy · Ivy</small></div>
         </a>
         <a class="live-btn all" href="https://m.followme.mv/public/" target="_blank" rel="noopener">
           <div class="icon">✈</div>
-          <div>
-            All Public Vessels
-            <small>Full FollowMe map</small>
-          </div>
+          <div>All Public Vessels<small>Full FollowMe map</small></div>
         </a>
       </div>
       <p class="live-note">
         Real-time positions powered by <a href="https://followme.mv" target="_blank" rel="noopener">FollowMe Maldives</a>.
-        Search for boat names (e.g. ESCAPE QUEEN) on the public map. Opens in a new tab.
       </p>
     </div>
 
     <div id="to-male-section">
       <div class="section-title">
-        <span class="arrow">→</span> Guraidhoo → Male
+        <div class="section-title-left"><span class="arrow">→</span> Guraidhoo → Male</div>
+        <span class="count-badge" id="to-male-count">0 ferries</span>
       </div>
       <div class="cards" id="to-male-cards"></div>
     </div>
 
     <div id="to-guraidhoo-section">
       <div class="section-title">
-        <span class="arrow">→</span> Male → Guraidhoo
+        <div class="section-title-left"><span class="arrow">→</span> Male → Guraidhoo</div>
+        <span class="count-badge" id="to-guraidhoo-count">0 ferries</span>
       </div>
       <div class="cards" id="to-guraidhoo-cards"></div>
     </div>
@@ -641,24 +685,15 @@ Welcome to Guraidhoo
       <div class="contact-grid">
         <a class="contact-item escape" href="tel:+9607994699">
           <div class="icon">E</div>
-          <div class="info">
-            <strong>Escape</strong>
-            <span>+960 799 4699</span>
-          </div>
+          <div class="info"><strong>Escape</strong><span>+960 799 4699</span></div>
         </a>
         <a class="contact-item vmarine" href="tel:+9607407777">
           <div class="icon">V</div>
-          <div class="info">
-            <strong>V Marine</strong>
-            <span>+960 740 7777</span>
-          </div>
+          <div class="info"><strong>V Marine</strong><span>+960 740 7777</span></div>
         </a>
         <a class="contact-item hawks" href="tel:+9607216816">
           <div class="icon">H</div>
-          <div class="info">
-            <strong>Hawks</strong>
-            <span>+960 721 6816</span>
-          </div>
+          <div class="info"><strong>Hawks</strong><span>+960 721 6816</span></div>
         </a>
       </div>
     </div>
@@ -674,61 +709,52 @@ Welcome to Guraidhoo
           crossorigin=""></script>
 
   <script>
-    // ========== MAP ==========
+    // Theme Toggle Logic
+    const themeToggle = document.getElementById("theme-toggle");
+    themeToggle.addEventListener("click", () => {
+      const currentTheme = document.documentElement.getAttribute("data-theme");
+      if (currentTheme === "dark") {
+        document.documentElement.removeAttribute("data-theme");
+        themeToggle.textContent = "🌙 Dark";
+      } else {
+        document.documentElement.setAttribute("data-theme", "dark");
+        themeToggle.textContent = "☀️ Light";
+      }
+    });
+
+    // ========== MAP & SIMULATION ==========
     const maleCoords = [4.17521, 73.50916];
     const guraidhooCoords = [3.90045, 73.46623];
 
     const map = L.map('map', {
-      scrollWheelZoom: false,   // prevent accidental zoom while scrolling page
+      scrollWheelZoom: false,
       zoomControl: true
     }).setView([4.04, 73.49], 10);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18,
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      attribution: '© OpenStreetMap'
     }).addTo(map);
 
-    // Custom markers
-    const maleIcon = L.divIcon({
-      className: 'custom-marker',
-      html: '',
-      iconSize: [18, 18]
-    });
-    const guraidhooIcon = L.divIcon({
-      className: 'custom-marker',
-      html: '',
-      iconSize: [18, 18]
-    });
-
-    // Style the markers via CSS injection after creation
-    const maleMarker = L.marker(maleCoords, {
+    L.marker(maleCoords, {
       icon: L.divIcon({
         className: '',
         html: `<div style="background:#E53935;width:16px;height:16px;border-radius:50%;border:3px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.35);"></div>`,
         iconSize: [16, 16],
         iconAnchor: [8, 8]
       })
-    }).addTo(map).bindPopup(`
-      <strong style="font-size:1rem;">Malé</strong><br>
-      Capital of the Maldives<br>
-      <small>Lat 4.175°, Lon 73.509°</small>
-    `);
+    }).addTo(map).bindPopup("<strong>Malé</strong><br>Capital");
 
-    const guraidhooMarker = L.marker(guraidhooCoords, {
+    L.marker(guraidhooCoords, {
       icon: L.divIcon({
         className: '',
         html: `<div style="background:#1E88E5;width:16px;height:16px;border-radius:50%;border:3px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.35);"></div>`,
         iconSize: [16, 16],
         iconAnchor: [8, 8]
       })
-    }).addTo(map).bindPopup(`
-      <strong style="font-size:1rem;">Guraidhoo</strong><br>
-      Kaafu Atoll<br>
-      <small>Lat 3.900°, Lon 73.466°</small>
-    `);
+    }).addTo(map).bindPopup("<strong>Guraidhoo</strong><br>Kaafu Atoll");
 
-    // Route line
-    const routeLine = L.polyline([guraidhooCoords, maleCoords], {
+    L.polyline([guraidhooCoords, maleCoords], {
       color: '#FFB300',
       weight: 4,
       opacity: 0.85,
@@ -736,14 +762,44 @@ Welcome to Guraidhoo
       lineCap: 'round'
     }).addTo(map);
 
-    // Fit bounds with some padding
     map.fitBounds([maleCoords, guraidhooCoords], { padding: [40, 40] });
-
-    // Enable scroll zoom only when map is focused/clicked
     map.on('click', () => map.scrollWheelZoom.enable());
     map.on('mouseout', () => map.scrollWheelZoom.disable());
 
-    // ========== SCHEDULE DATA ==========
+    // Ferry Simulation Marker
+    let simMarker = null;
+    document.getElementById("sim-btn").addEventListener("click", () => {
+      if (simMarker) map.removeLayer(simMarker);
+      
+      const boatIcon = L.divIcon({
+        className: '',
+        html: `<div style="background:#FF6F00;width:22px;height:22px;border-radius:50%;border:3px solid white;display:flex;align-items:center;justify-content:center;color:white;font-size:10px;box-shadow:0 0 10px #FF6F00;">🚤</div>`,
+        iconSize: [22, 22],
+        iconAnchor: [11, 11]
+      });
+
+      simMarker = L.marker(guraidhooCoords, { icon: boatIcon }).addTo(map);
+      simMarker.bindPopup("<strong>Simulated Ferry</strong><br>En route to Malé...").openPopup();
+
+      let steps = 100;
+      let currentStep = 0;
+      let latStep = (maleCoords[0] - guraidhooCoords[0]) / steps;
+      let lonStep = (maleCoords[1] - guraidhooCoords[1]) / steps;
+
+      let interval = setInterval(() => {
+        currentStep++;
+        let newLat = guraidhooCoords[0] + (latStep * currentStep);
+        let newLon = guraidhooCoords[1] + (lonStep * currentStep);
+        simMarker.setLatLng([newLat, newLon]);
+
+        if (currentStep >= steps) {
+          clearInterval(interval);
+          simMarker.bindPopup("<strong>Simulated Ferry</strong><br>Arrived in Malé!").openPopup();
+        }
+      }, 40);
+    });
+
+    // ========== SCHEDULE DATA & FILTERING ==========
     const schedule = {
       "to-male": [
         { time: "05:55", days: "Sun-Sat", operator: "escape" },
@@ -781,11 +837,7 @@ Welcome to Guraidhoo
       ]
     };
 
-    const operatorNames = {
-      escape: "Escape",
-      vmarine: "V Marine",
-      hawks: "Hawks"
-    };
+    const operatorNames = { escape: "Escape", vmarine: "V Marine", hawks: "Hawks" };
 
     function daysInclude(dayRange, day) {
       if (day === "all") return true;
@@ -796,86 +848,42 @@ Welcome to Guraidhoo
         "Fri-Sun": ["Fri", "Sat", "Sun"],
         "Fri": ["Fri"],
       };
-      const list = map[dayRange] || [dayRange];
-      return list.includes(day);
+      return (map[dayRange] || [dayRange]).includes(day);
     }
 
-    function isDaily(days) {
-      return days === "Sun-Sat";
-    }
+    function isDaily(days) { return days === "Sun-Sat"; }
 
     function formatDays(days) {
       const labels = {
-        "Sun-Sat": "Daily",
-        "Sat-Thur": "Sat – Thu",
-        "Thu-Sat": "Thu – Sat",
-        "Fri-Sun": "Fri – Sun",
-        "Fri": "Friday only",
+        "Sun-Sat": "Daily", "Sat-Thur": "Sat – Thu",
+        "Thu-Sat": "Thu – Sat", "Fri-Sun": "Fri – Sun", "Fri": "Friday only"
       };
       return labels[days] || days;
     }
 
     function getCurrentDayAndTime() {
-      // Maldives is UTC+5
       const now = new Date();
-      // Adjust to Maldives time (UTC+5)
       const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
       const maldives = new Date(utc + (5 * 3600000));
       const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-      const day = days[maldives.getDay()];
-      const hours = String(maldives.getHours()).padStart(2, "0");
-      const mins = String(maldives.getMinutes()).padStart(2, "0");
-      return { day, time: hours + ":" + mins, full: maldives };
-    }
-
-    function createCard(item, isNext) {
-      const daily = isDaily(item.days);
-      const nextClass = isNext ? " next-ferry" : "";
-      const nextBadge = isNext ? '<span class="next-badge">Next</span>' : "";
-      return `
-        <div class="card ${item.operator}${nextClass}">
-          <div class="card-header">
-            <div class="operator">
-              <span class="dot"></span>
-              ${operatorNames[item.operator]}${nextBadge}
-            </div>
-            <div class="time">${item.time}</div>
-          </div>
-          <div class="card-body">
-            <span class="days-badge ${daily ? 'daily' : ''}">${formatDays(item.days)}</span>
-          </div>
-        </div>
-      `;
-    }
-
-    function findNextFerry(items, currentTime, currentDay) {
-      // items already filtered for day and sorted by time
-      // Find the first departure that is still upcoming today
-      for (const item of items) {
-        if (item.time > currentTime && daysInclude(item.days, currentDay)) {
-          return item;
-        }
-      }
-      return null; // none left today under current filters
+      return { day: days[maldives.getDay()], time: String(maldives.getHours()).padStart(2, "0") + ":" + String(maldives.getMinutes()).padStart(2, "0") };
     }
 
     function render() {
       const direction = document.getElementById("direction").value;
       const operator = document.getElementById("operator").value;
+      const searchQuery = document.getElementById("search-input").value.toLowerCase();
       const activeDayBtn = document.querySelector(".day-btn.active");
       let day = activeDayBtn ? activeDayBtn.dataset.day : "all";
 
       const { day: today, time: nowTime } = getCurrentDayAndTime();
-
-      // If user selected "All" days, use today's day for next-ferry calculation
-      const dayForNext = (day === "all") ? today : day;
-
       let globalNext = null;
       let globalNextDir = null;
 
       ["to-male", "to-guraidhoo"].forEach(dir => {
         const section = document.getElementById(`${dir}-section`);
         const container = document.getElementById(`${dir}-cards`);
+        const countBadge = document.getElementById(`${dir}-count`);
 
         if (direction !== "all" && direction !== dir) {
           section.style.display = "none";
@@ -886,18 +894,24 @@ Welcome to Guraidhoo
         let items = schedule[dir].filter(item => {
           if (operator !== "all" && item.operator !== operator) return false;
           if (!daysInclude(item.days, day)) return false;
+          if (searchQuery && !item.time.includes(searchQuery) && !operatorNames[item.operator].toLowerCase().includes(searchQuery)) return false;
           return true;
         });
 
         items.sort((a, b) => a.time.localeCompare(b.time));
+        countBadge.textContent = `${items.length} ${items.length === 1 ? 'ferry' : 'ferries'}`;
 
-        // Find next ferry for this direction (only if looking at today or all)
         let nextItem = null;
         if (day === "all" || day === today) {
-          nextItem = findNextFerry(items, nowTime, today);
-          if (nextItem && (!globalNext || nextItem.time < globalNext.time)) {
-            globalNext = nextItem;
-            globalNextDir = dir;
+          for (const item of schedule[dir]) {
+            if (item.time > nowTime && daysInclude(item.days, today)) {
+              nextItem = item;
+              if (!globalNext || item.time < globalNext.time) {
+                globalNext = item;
+                globalNextDir = dir;
+              }
+              break;
+            }
           }
         }
 
@@ -905,41 +919,56 @@ Welcome to Guraidhoo
           container.innerHTML = `
             <div class="empty-state">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                <circle cx="12" cy="12" r="10"/>
-                <path d="M12 8v4M12 16h.01"/>
+                <circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/>
               </svg>
-              <p>No ferries match your filters</p>
+              <p>No ferries match your filter criteria</p>
+              <button class="reset-filter-btn" onclick="resetFilters()">Reset Filters</button>
             </div>
           `;
         } else {
-          container.innerHTML = items.map(item =>
-            createCard(item, nextItem && item.time === nextItem.time && item.operator === nextItem.operator)
-          ).join("");
+          container.innerHTML = items.map(item => {
+            const isNext = nextItem && item.time === nextItem.time && item.operator === nextItem.operator && dir === globalNextDir;
+            return `
+              <div class="card ${item.operator}${isNext ? ' next-ferry' : ''}">
+                <div class="card-header">
+                  <div class="operator"><span class="dot"></span>${operatorNames[item.operator]}${isNext ? '<span class="next-badge">Next</span>' : ''}</div>
+                  <div class="time">${item.time}</div>
+                </div>
+                <div class="card-body">
+                  <span class="days-badge ${isDaily(item.days) ? 'daily' : ''}">${formatDays(item.days)}</span>
+                </div>
+              </div>
+            `;
+          }).join("");
         }
       });
 
-      // Update the next-ferry banner
       const banner = document.getElementById("next-ferry-banner");
-      if (banner) {
-        if (globalNext) {
-          const dirLabel = globalNextDir === "to-male" ? "Guraidhoo → Male" : "Male → Guraidhoo";
-          banner.classList.remove("hidden");
-          banner.innerHTML = `
-            <div>
-              <div class="label">Next Ferry · Maldives time</div>
-              <div class="details">${globalNext.time} · ${operatorNames[globalNext.operator]} <span>(${dirLabel})</span></div>
-            </div>
-          `;
-        } else {
-          banner.classList.add("hidden");
-        }
+      if (globalNext) {
+        banner.classList.remove("hidden");
+        banner.innerHTML = `
+          <div>
+            <div class="label">Next Upcoming Ferry · Maldives Time</div>
+            <div class="details">${globalNext.time} · ${operatorNames[globalNext.operator]} <span>(${globalNextDir === "to-male" ? "Guraidhoo → Male" : "Male → Guraidhoo"})</span></div>
+          </div>
+        `;
+      } else {
+        banner.classList.add("hidden");
       }
     }
 
-    // Event listeners
+    function resetFilters() {
+      document.getElementById("direction").value = "all";
+      document.getElementById("operator").value = "all";
+      document.getElementById("search-input").value = "";
+      document.querySelectorAll(".day-btn").forEach(b => b.classList.remove("active"));
+      document.querySelector(".day-btn.all-btn").classList.add("active");
+      render();
+    }
+
     document.getElementById("direction").addEventListener("change", render);
     document.getElementById("operator").addEventListener("change", render);
-
+    document.getElementById("search-input").addEventListener("input", render);
     document.getElementById("day-btns").addEventListener("click", (e) => {
       if (e.target.classList.contains("day-btn")) {
         document.querySelectorAll(".day-btn").forEach(b => b.classList.remove("active"));
@@ -948,7 +977,6 @@ Welcome to Guraidhoo
       }
     });
 
-    // Initial render
     render();
   </script>
 </body>
