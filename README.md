@@ -682,7 +682,7 @@ Welcome to Guraidhoo Island
   <header>
     <button class="theme-toggle" id="theme-toggle">🌙 Dark</button>
     <h1>Ferry Schedule</h1>
-    <p>Guraidhoo ↔ Male</p>
+    <p>Guraidhoo ↔ Male ↔ Guraidhoo</p>
     <div class="live-clock" id="live-clock">🕒 Loading local time...</div>
   </header>
 
