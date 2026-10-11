@@ -301,9 +301,9 @@ Welcome to Guraidhoo Island
       font-weight: 700;
       flex-shrink: 0;
       object-fit: cover;
+      background: white;
     }
     .live-btn.escape .icon { background: var(--escape); }
-    .live-btn.hawks .icon { background: var(--hawks); }
     .live-btn.all .icon { background: #7B1FA2; }
     .live-btn small {
       display: block;
@@ -393,6 +393,7 @@ Welcome to Guraidhoo Island
       height: 24px;
       border-radius: 50%;
       object-fit: cover;
+      background: white;
     }
     .operator .dot {
       width: 10px;
@@ -403,8 +404,6 @@ Welcome to Guraidhoo Island
     .card.vmarine .operator { color: var(--vmarine); }
     .card.hawks .operator { color: var(--hawks); }
     .card.escape .dot { background: var(--escape); }
-    .card.vmarine .dot { background: var(--vmarine); }
-    .card.hawks .dot { background: var(--hawks); }
 
     .time {
       font-size: 1.55rem;
@@ -551,9 +550,9 @@ Welcome to Guraidhoo Island
       font-weight: 700;
       flex-shrink: 0;
       object-fit: cover;
+      background: white;
     }
     .contact-item.escape .icon { background: var(--escape); }
-    .contact-item.hawks .icon { background: var(--hawks); }
     .contact-item .info strong {
       display: block;
       font-size: 0.9rem;
@@ -657,7 +656,7 @@ Welcome to Guraidhoo Island
           <div>V Marine<small>V Marine 1 · 2 · 3</small></div>
         </a>
         <a class="live-btn hawks" href="https://m.followme.mv/public/?s=HAWKS" target="_blank" rel="noopener">
-          <div class="icon">H</div>
+          <img src="hawks-logo.jpg" alt="Hawks" class="logo-img" />
           <div>Hawks Ferries<small>Daisy · Ivy</small></div>
         </a>
         <a class="live-btn all" href="https://m.followme.mv/public/" target="_blank" rel="noopener">
@@ -698,7 +697,7 @@ Welcome to Guraidhoo Island
           <div class="info"><strong>V Marine</strong><span>+960 740 7777</span></div>
         </a>
         <a class="contact-item hawks" href="tel:+9607216816">
-          <div class="icon">H</div>
+          <img src="hawks-logo.jpg" alt="Hawks" />
           <div class="info"><strong>Hawks</strong><span>+960 721 6816</span></div>
         </a>
       </div>
@@ -937,6 +936,8 @@ Welcome to Guraidhoo Island
             let iconMarkup = `<span class="dot"></span>`;
             if (item.operator === 'vmarine') {
               iconMarkup = `<img src="vmarine-logo.jpg" alt="V Marine" />`;
+            } else if (item.operator === 'hawks') {
+              iconMarkup = `<img src="hawks-logo.jpg" alt="Hawks" />`;
             }
             return `
               <div class="card ${item.operator}${isNext ? ' next-ferry' : ''}">
