@@ -370,25 +370,16 @@ Welcome to Guraidhoo Island
       opacity: 0.8;
       margin-top: 1px;
     }
-    .live-note {
-      text-align: center;
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-top: 0.85rem;
-      line-height: 1.4;
-    }
-    .live-note a { color: var(--accent); text-decoration: none; }
-    .live-note a:hover { text-decoration: underline; }
 
-    /* TV Button styling */
+    /* Stream Button styling */
     .tv-promo-btn {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 1.5rem 1rem;
-      background: linear-gradient(135deg, rgba(230, 81, 0, 0.1), rgba(26, 107, 154, 0.1));
+      padding: 1.2rem 1rem;
+      background: linear-gradient(135deg, rgba(230, 81, 0, 0.08), rgba(26, 107, 154, 0.08));
       border: 2px dashed var(--accent);
       border-radius: 12px;
       text-decoration: none;
@@ -398,10 +389,12 @@ Welcome to Guraidhoo Island
     }
     .tv-promo-btn:hover {
       transform: translateY(-2px);
-      background: linear-gradient(135deg, rgba(230, 81, 0, 0.15), rgba(26, 107, 154, 0.15));
+      background: linear-gradient(135deg, rgba(230, 81, 0, 0.12), rgba(26, 107, 154, 0.12));
     }
-    .tv-promo-btn .tv-icon {
-      font-size: 2.2rem;
+    .tv-promo-btn .tv-logo-img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
       margin-bottom: 0.4rem;
     }
     .tv-promo-btn strong {
@@ -767,11 +760,11 @@ Welcome to Guraidhoo Island
         </div>
       </div>
 
-      <!-- Onboard Entertainment / Live TV -->
+      <!-- Onboard Entertainment / Live Stream -->
       <div class="entertainment-box">
         <h2>📺 Onboard Entertainment</h2>
         <a class="tv-promo-btn" href="https://hilaytv.xyz/" target="_blank" rel="noopener">
-          <div class="tv-icon">📺</div>
+          <img src="hilaytv-logo.png" alt="Hilay TV Play Icon" class="tv-logo-img" />
           <strong>Enjoy Live TV While on the Go</strong>
           <span>Stream your favorite channels & shows live on board</span>
         </a>
