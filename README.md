@@ -288,6 +288,7 @@ Welcome to Guraidhoo Island
       grid-template-columns: 1fr 1fr;
       gap: 1rem;
       margin: 1.4rem 0 0.5rem;
+      align-items: stretch;
     }
     @media (max-width: 768px) {
       .tracking-entertainment-grid {
@@ -301,6 +302,8 @@ Welcome to Guraidhoo Island
       box-shadow: var(--shadow);
       padding: 1.2rem 1.3rem;
       border: 1.5px solid var(--border);
+      display: flex;
+      flex-direction: column;
     }
     .live-tracking h2, .entertainment-box h2 {
       font-size: 0.85rem;
@@ -329,6 +332,7 @@ Welcome to Guraidhoo Island
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 0.7rem;
+      flex-grow: 1;
     }
     .live-btn {
       display: flex;
@@ -372,6 +376,12 @@ Welcome to Guraidhoo Island
     }
 
     /* Stream Button styling */
+    .tv-promo-wrapper {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: center;
+    }
     .tv-promo-btn {
       display: flex;
       flex-direction: column;
@@ -385,6 +395,7 @@ Welcome to Guraidhoo Island
       text-decoration: none;
       color: var(--text);
       transition: transform 0.15s, background 0.15s;
+      width: 100%;
       height: 100%;
     }
     .tv-promo-btn:hover {
@@ -763,11 +774,13 @@ Welcome to Guraidhoo Island
       <!-- Onboard Entertainment / Live Stream -->
       <div class="entertainment-box">
         <h2>📺 Onboard Entertainment</h2>
-        <a class="tv-promo-btn" href="https://hilaytv.xyz/" target="_blank" rel="noopener">
-          <img src="hilaytv-logo.png" alt="Hilay TV Play Icon" class="tv-logo-img" />
-          <strong>Enjoy Live TV While on the Go</strong>
-          <span>Stream your favorite channels & shows live on board</span>
-        </a>
+        <div class="tv-promo-wrapper">
+          <a class="tv-promo-btn" href="https://hilaytv.xyz/" target="_blank" rel="noopener">
+            <img src="hilaytv-logo.png" alt="Hilay TV Play Icon" class="tv-logo-img" />
+            <strong>Enjoy Live TV While on the Go</strong>
+            <span>Stream your favorite channels & shows live on board</span>
+          </a>
+        </div>
       </div>
     </div>
 
