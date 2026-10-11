@@ -1,9 +1,9 @@
-
+Welcome to Guraidhoo Island
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Guraidhoo Ferry Schedule • Guraidhoo ↔ Male</title>
+  <title>Ferry Schedule • Guraidhoo ↔ Male</title>
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
@@ -289,7 +289,7 @@
       box-shadow: 0 4px 14px rgba(0,0,0,0.1);
       border-color: var(--accent);
     }
-    .live-btn .icon {
+    .live-btn .icon, .live-btn .logo-img {
       width: 32px;
       height: 32px;
       border-radius: 8px;
@@ -300,9 +300,9 @@
       font-size: 0.8rem;
       font-weight: 700;
       flex-shrink: 0;
+      object-fit: cover;
     }
     .live-btn.escape .icon { background: var(--escape); }
-    .live-btn.vmarine .icon { background: var(--vmarine); }
     .live-btn.hawks .icon { background: var(--hawks); }
     .live-btn.all .icon { background: #7B1FA2; }
     .live-btn small {
@@ -386,7 +386,13 @@
       font-size: 0.95rem;
       display: flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.5rem;
+    }
+    .operator img {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      object-fit: cover;
     }
     .operator .dot {
       width: 10px;
@@ -533,7 +539,7 @@
       background: var(--bg);
     }
     .contact-item:hover { border-color: var(--accent); }
-    .contact-item .icon {
+    .contact-item .icon, .contact-item img {
       width: 36px;
       height: 36px;
       border-radius: 50%;
@@ -544,9 +550,9 @@
       font-size: 0.85rem;
       font-weight: 700;
       flex-shrink: 0;
+      object-fit: cover;
     }
     .contact-item.escape .icon { background: var(--escape); }
-    .contact-item.vmarine .icon { background: var(--vmarine); }
     .contact-item.hawks .icon { background: var(--hawks); }
     .contact-item .info strong {
       display: block;
@@ -647,7 +653,7 @@
           <div>Escape Ferries<small>Queen · Wing · King</small></div>
         </a>
         <a class="live-btn vmarine" href="https://m.followme.mv/public/?s=V%20Marine" target="_blank" rel="noopener">
-          <div class="icon">V</div>
+          <img src="vmarine-logo.jpg" alt="V Marine" class="logo-img" />
           <div>V Marine<small>V Marine 1 · 2 · 3</small></div>
         </a>
         <a class="live-btn hawks" href="https://m.followme.mv/public/?s=HAWKS" target="_blank" rel="noopener">
@@ -688,7 +694,7 @@
           <div class="info"><strong>Escape</strong><span>+960 799 4699</span></div>
         </a>
         <a class="contact-item vmarine" href="tel:+9607407777">
-          <div class="icon">V</div>
+          <img src="vmarine-logo.jpg" alt="V Marine" />
           <div class="info"><strong>V Marine</strong><span>+960 740 7777</span></div>
         </a>
         <a class="contact-item hawks" href="tel:+9607216816">
@@ -928,10 +934,14 @@
         } else {
           container.innerHTML = items.map(item => {
             const isNext = nextItem && item.time === nextItem.time && item.operator === nextItem.operator && dir === globalNextDir;
+            let iconMarkup = `<span class="dot"></span>`;
+            if (item.operator === 'vmarine') {
+              iconMarkup = `<img src="vmarine-logo.jpg" alt="V Marine" />`;
+            }
             return `
               <div class="card ${item.operator}${isNext ? ' next-ferry' : ''}">
                 <div class="card-header">
-                  <div class="operator"><span class="dot"></span>${operatorNames[item.operator]}${isNext ? '<span class="next-badge">Next</span>' : ''}</div>
+                  <div class="operator">${iconMarkup}${operatorNames[item.operator]}${isNext ? '<span class="next-badge">Next</span>' : ''}</div>
                   <div class="time">${item.time}</div>
                 </div>
                 <div class="card-body">
