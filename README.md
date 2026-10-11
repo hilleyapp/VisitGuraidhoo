@@ -57,12 +57,24 @@ Welcome to Guraidhoo Island
       font-size: 1.75rem;
       font-weight: 700;
       letter-spacing: 0.5px;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.15rem;
     }
     header p {
       font-size: 1.05rem;
       opacity: 0.9;
       font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+    .live-clock {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(255, 255, 255, 0.15);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
     }
 
     /* Theme Toggle */
@@ -671,6 +683,7 @@ Welcome to Guraidhoo Island
     <button class="theme-toggle" id="theme-toggle">🌙 Dark</button>
     <h1>Ferry Schedule</h1>
     <p>Guraidhoo ↔ Male</p>
+    <div class="live-clock" id="live-clock">🕒 Loading local time...</div>
   </header>
 
   <!-- Weather Widget -->
@@ -842,6 +855,18 @@ Welcome to Guraidhoo Island
       }
     });
 
+    // Live Clock Logic (Maldives Time UTC+5)
+    function updateClock() {
+      const now = new Date();
+      const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+      const maldivesTime = new Date(utc + (5 * 3600000));
+      
+      const options = { weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+      document.getElementById("live-clock").textContent = "🕒 " + maldivesTime.toLocaleString('en-US', options) + " (Maldives)";
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
     // ========== MAP & SIMULATION ==========
     const maleCoords = [4.17521, 73.50916];
     const guraidhooCoords = [3.90045, 73.46623];
@@ -997,8 +1022,33 @@ Welcome to Guraidhoo Island
       let day = activeDayBtn ? activeDayBtn.dataset.day : "all";
 
       const { day: today, time: nowTime } = getCurrentDayAndTime();
-      let globalNext = null;
-      let globalNextDir = null;
+      let globalNextMinTime = null;
+
+      ["to-male", "to-guraidhoo"].forEach(dir => {
+        if (day === "all" || day === today) {
+          for (const item of schedule[dir]) {
+            if (item.time > nowTime && daysInclude(item.days, today)) {
+              if (!globalNextMinTime || item.time < globalNextMinTime) {
+                globalNextMinTime = item.time;
+              }
+              break;
+            }
+          }
+        }
+      });
+
+      let nextFerriesList = [];
+      if (globalNextMinTime) {
+        ["to-male", "to-guraidhoo"].forEach(dir => {
+          if (day === "all" || day === today) {
+            schedule[dir].forEach(item => {
+              if (item.time === globalNextMinTime && daysInclude(item.days, today)) {
+                nextFerriesList.push({ ...item, direction: dir });
+              }
+            });
+          }
+        });
+      }
 
       ["to-male", "to-guraidhoo"].forEach(dir => {
         const section = document.getElementById(`${dir}-section`);
@@ -1021,20 +1071,6 @@ Welcome to Guraidhoo Island
         items.sort((a, b) => a.time.localeCompare(b.time));
         countBadge.textContent = `${items.length} ${items.length === 1 ? 'ferry' : 'ferries'}`;
 
-        let nextItem = null;
-        if (day === "all" || day === today) {
-          for (const item of schedule[dir]) {
-            if (item.time > nowTime && daysInclude(item.days, today)) {
-              nextItem = item;
-              if (!globalNext || item.time < globalNext.time) {
-                globalNext = item;
-                globalNextDir = dir;
-              }
-              break;
-            }
-          }
-        }
-
         if (items.length === 0) {
           container.innerHTML = `
             <div class="empty-state">
@@ -1047,7 +1083,7 @@ Welcome to Guraidhoo Island
           `;
         } else {
           container.innerHTML = items.map(item => {
-            const isNext = nextItem && item.time === nextItem.time && item.operator === nextItem.operator && dir === globalNextDir;
+            const isNext = nextFerriesList.some(nf => nf.time === item.time && nf.operator === item.operator && nf.direction === dir);
             let iconMarkup = `<img src="${item.operator}-logo.jpg" alt="${operatorNames[item.operator]}" />`;
             return `
               <div class="card ${item.operator}${isNext ? ' next-ferry' : ''}">
@@ -1065,12 +1101,13 @@ Welcome to Guraidhoo Island
       });
 
       const banner = document.getElementById("next-ferry-banner");
-      if (globalNext) {
+      if (nextFerriesList.length > 0) {
         banner.classList.remove("hidden");
+        const detailsText = nextFerriesList.map(nf => `${operatorNames[nf.operator]} (${nf.direction === "to-male" ? "Guraidhoo → Male" : "Male → Guraidhoo"})`).join(" & ");
         banner.innerHTML = `
           <div>
             <div class="label">Next Upcoming Ferry · Maldives Time</div>
-            <div class="details">${globalNext.time} · ${operatorNames[globalNext.operator]} <span>(${globalNextDir === "to-male" ? "Guraidhoo → Male" : "Male → Guraidhoo"})</span></div>
+            <div class="details">${globalNextMinTime} · ${detailsText}</div>
           </div>
         `;
       } else {
