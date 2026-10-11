@@ -303,7 +303,6 @@ Welcome to Guraidhoo Island
       object-fit: cover;
       background: white;
     }
-    .live-btn.escape .icon { background: var(--escape); }
     .live-btn.all .icon { background: #7B1FA2; }
     .live-btn small {
       display: block;
@@ -395,15 +394,9 @@ Welcome to Guraidhoo Island
       object-fit: cover;
       background: white;
     }
-    .operator .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-    }
     .card.escape .operator { color: var(--escape); }
     .card.vmarine .operator { color: var(--vmarine); }
     .card.hawks .operator { color: var(--hawks); }
-    .card.escape .dot { background: var(--escape); }
 
     .time {
       font-size: 1.55rem;
@@ -538,21 +531,17 @@ Welcome to Guraidhoo Island
       background: var(--bg);
     }
     .contact-item:hover { border-color: var(--accent); }
-    .contact-item .icon, .contact-item img {
+    .contact-item img {
       width: 36px;
       height: 36px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
-      font-size: 0.85rem;
-      font-weight: 700;
       flex-shrink: 0;
       object-fit: cover;
       background: white;
     }
-    .contact-item.escape .icon { background: var(--escape); }
     .contact-item .info strong {
       display: block;
       font-size: 0.9rem;
@@ -648,7 +637,7 @@ Welcome to Guraidhoo Island
       <h2><span class="live-dot"></span> Live Tracking (FollowMe)</h2>
       <div class="live-grid">
         <a class="live-btn escape" href="https://m.followme.mv/public/?s=ESCAPE" target="_blank" rel="noopener">
-          <div class="icon">E</div>
+          <img src="escape-logo.jpg" alt="Escape" class="logo-img" />
           <div>Escape Ferries<small>Queen · Wing · King</small></div>
         </a>
         <a class="live-btn vmarine" href="https://m.followme.mv/public/?s=V%20Marine" target="_blank" rel="noopener">
@@ -689,7 +678,7 @@ Welcome to Guraidhoo Island
       <h3>Contact Operators</h3>
       <div class="contact-grid">
         <a class="contact-item escape" href="tel:+9607994699">
-          <div class="icon">E</div>
+          <img src="escape-logo.jpg" alt="Escape" />
           <div class="info"><strong>Escape</strong><span>+960 799 4699</span></div>
         </a>
         <a class="contact-item vmarine" href="tel:+9607407777">
@@ -933,12 +922,7 @@ Welcome to Guraidhoo Island
         } else {
           container.innerHTML = items.map(item => {
             const isNext = nextItem && item.time === nextItem.time && item.operator === nextItem.operator && dir === globalNextDir;
-            let iconMarkup = `<span class="dot"></span>`;
-            if (item.operator === 'vmarine') {
-              iconMarkup = `<img src="vmarine-logo.jpg" alt="V Marine" />`;
-            } else if (item.operator === 'hawks') {
-              iconMarkup = `<img src="hawks-logo.jpg" alt="Hawks" />`;
-            }
+            let iconMarkup = `<img src="${item.operator}-logo.jpg" alt="${operatorNames[item.operator]}" />`;
             return `
               <div class="card ${item.operator}${isNext ? ' next-ferry' : ''}">
                 <div class="card-header">
