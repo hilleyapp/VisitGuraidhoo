@@ -4,14 +4,29 @@ Welcome to Guraidhoo Island
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Ferry Schedule • Guraidhoo ↔ Male</title>
+  
+  <!-- Open Graph / Social Media Preview Meta Tags -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://hilleyapp.github.io/VisitGuraidhoo" />
+  <meta property="og:title" content="Ferry Schedule • Guraidhoo ↔ Male" />
+  <meta property="og:description" content="Check live ferry schedules, live tracking, weather, and onboard entertainment for Guraidhoo and Malé." />
+  <meta property="og:image" content="https://hilleyapp.github.io/VisitGuraidhoo/preview.jpg" />
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://hilleyapp.github.io/VisitGuraidhoo" />
+  <meta name="twitter:title" content="Ferry Schedule • Guraidhoo ↔ Male" />
+  <meta name="twitter:description" content="Check live ferry schedules, live tracking, weather, and onboard entertainment for Guraidhoo and Malé." />
+  <meta name="twitter:image" content="https://hilleyapp.github.io/VisitGuraidhoo/preview.jpg" />
+
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
         integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
         crossorigin="" />
   <style>
     :root {
-      --primary: #0B3D5C;
-      --accent: #1A6B9A;
+      --primary: #0288D1;
+      --accent: #00ACC1;
       --escape: #1E88E5;
       --vmarine: #00897B;
       --hawks: #E65100;
@@ -24,8 +39,8 @@ Welcome to Guraidhoo Island
     }
 
     [data-theme="dark"] {
-      --primary: #1A6B9A;
-      --accent: #2980B9;
+      --primary: #0288D1;
+      --accent: #26A69A;
       --bg: #0F172A;
       --card: #1E293B;
       --text: #F8FAFC;
@@ -44,9 +59,9 @@ Welcome to Guraidhoo Island
       min-height: 100vh;
     }
 
-    /* Header */
+    /* Header Banner with updated ocean gradient */
     header {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+      background: linear-gradient(135deg, #0277BD 0%, #00838F 50%, #00695C 100%);
       color: white;
       padding: 1.8rem 1.5rem 1.4rem;
       text-align: center;
@@ -69,7 +84,7 @@ Welcome to Guraidhoo Island
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      background: rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.2);
       padding: 0.3rem 0.8rem;
       border-radius: 20px;
       font-size: 0.82rem;
