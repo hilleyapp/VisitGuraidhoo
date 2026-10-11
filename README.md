@@ -84,10 +84,58 @@ Welcome to Guraidhoo Island
     }
     .theme-toggle:hover { background: rgba(255, 255, 255, 0.3); }
 
+    /* Weather Widget */
+    .weather-widget {
+      max-width: 960px;
+      margin: -1.2rem auto 1.2rem;
+      padding: 0 1rem;
+      position: relative;
+      z-index: 11;
+    }
+    .weather-card {
+      background: var(--card);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      padding: 0.9rem 1.2rem;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+    .weather-left {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .weather-icon {
+      font-size: 1.8rem;
+    }
+    .weather-info strong {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .weather-info span {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .weather-stats {
+      display: flex;
+      gap: 1.2rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .weather-stats strong {
+      color: var(--text);
+    }
+
     /* Controls */
     .controls {
       max-width: 960px;
-      margin: -1.2rem auto 0;
+      margin: 0 auto;
       padding: 0 1rem;
       position: relative;
       z-index: 10;
@@ -575,6 +623,23 @@ Welcome to Guraidhoo Island
     <h1>Ferry Schedule</h1>
     <p>Guraidhoo ↔ Male</p>
   </header>
+
+  <!-- Weather Widget -->
+  <div class="weather-widget">
+    <div class="weather-card">
+      <div class="weather-left">
+        <span class="weather-icon">⛅</span>
+        <div class="weather-info">
+          <strong>Guraidhoo Weather</strong>
+          <span>Scattered Clouds / Afternoon Showers</span>
+        </div>
+      </div>
+      <div class="weather-stats">
+        <div>Temp: <strong>29°C</strong></div>
+        <div>Wind: <strong>Gentle breeze</strong></div>
+      </div>
+    </div>
+  </div>
 
   <div class="controls">
     <div class="controls-inner">
