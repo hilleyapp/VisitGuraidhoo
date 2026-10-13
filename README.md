@@ -1,4 +1,4 @@
-Welcome to Guraidhoo Island
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -30,6 +30,7 @@ Welcome to Guraidhoo Island
       --escape: #1E88E5;
       --vmarine: #00897B;
       --hawks: #E65100;
+      --buggy: #43A047;
       --bg: #F4F8FB;
       --card: #FFFFFF;
       --text: #1A2A3A;
@@ -59,37 +60,42 @@ Welcome to Guraidhoo Island
       min-height: 100vh;
     }
 
-    /* Header Banner with updated ocean gradient */
+    /* Header Photo Banner */
     header {
-      background: linear-gradient(135deg, #0277BD 0%, #00838F 50%, #00695C 100%);
+      background: linear-gradient(135deg, rgba(2, 119, 189, 0.85) 0%, rgba(0, 131, 143, 0.85) 50%, rgba(0, 105, 92, 0.85) 100%),
+                  url('banner.jpg') center/cover no-repeat;
       color: white;
-      padding: 1.8rem 1.5rem 1.4rem;
+      padding: 2.5rem 1.5rem 2rem;
       text-align: center;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
       position: relative;
     }
     header h1 {
-      font-size: 1.75rem;
-      font-weight: 700;
+      font-size: 2rem;
+      font-weight: 800;
       letter-spacing: 0.5px;
-      margin-bottom: 0.15rem;
+      margin-bottom: 0.2rem;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
     header p {
-      font-size: 1.05rem;
-      opacity: 0.9;
-      font-weight: 400;
-      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+      opacity: 0.95;
+      font-weight: 500;
+      margin-bottom: 0.8rem;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
     }
     .live-clock {
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      background: rgba(255, 255, 255, 0.2);
-      padding: 0.3rem 0.8rem;
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(4px);
+      padding: 0.35rem 0.9rem;
       border-radius: 20px;
       font-size: 0.82rem;
       font-weight: 600;
       letter-spacing: 0.3px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     /* Theme Toggle */
@@ -97,8 +103,9 @@ Welcome to Guraidhoo Island
       position: absolute;
       top: 1.2rem;
       right: 1.2rem;
-      background: rgba(255, 255, 255, 0.2);
-      border: none;
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       color: white;
       padding: 0.4rem 0.8rem;
       border-radius: 20px;
@@ -109,7 +116,7 @@ Welcome to Guraidhoo Island
       align-items: center;
       gap: 0.3rem;
     }
-    .theme-toggle:hover { background: rgba(255, 255, 255, 0.3); }
+    .theme-toggle:hover { background: rgba(0, 0, 0, 0.5); }
 
     /* Weather Widget */
     .weather-widget {
@@ -574,24 +581,23 @@ Welcome to Guraidhoo Island
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 0.5rem;
+      gap: 0.8rem;
       box-shadow: 0 4px 16px rgba(255, 111, 0, 0.25);
     }
+    .next-ferry-banner .banner-col {
+      flex: 1;
+      min-width: 200px;
+    }
     .next-ferry-banner .label {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.6px;
       opacity: 0.9;
     }
     .next-ferry-banner .details {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 700;
-    }
-    .next-ferry-banner .details span {
-      opacity: 0.9;
-      font-weight: 500;
-      font-size: 0.95rem;
     }
     .next-ferry-banner.hidden { display: none; }
 
@@ -622,22 +628,28 @@ Welcome to Guraidhoo Island
       font-weight: 600;
     }
 
-    /* Contacts */
-    .contacts {
-      margin-top: 2.5rem;
+    /* Contacts & Buggy Service Section */
+    .contacts, .buggy-service {
+      margin-top: 1.5rem;
       background: var(--card);
       border-radius: 14px;
       box-shadow: var(--shadow);
       padding: 1.3rem;
       border: 1px solid var(--border);
     }
-    .contacts h3 {
+    .contacts { margin-top: 2.5rem; }
+    
+    .contacts h3, .buggy-service h3 {
       font-size: 0.85rem;
       text-transform: uppercase;
       letter-spacing: 0.8px;
       color: var(--muted);
       margin-bottom: 1rem;
       text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
     }
     .contact-grid {
       display: grid;
@@ -655,7 +667,7 @@ Welcome to Guraidhoo Island
       background: var(--bg);
     }
     .contact-item:hover { border-color: var(--accent); }
-    .contact-item img {
+    .contact-item img, .contact-item .icon-avatar {
       width: 36px;
       height: 36px;
       border-radius: 50%;
@@ -666,6 +678,11 @@ Welcome to Guraidhoo Island
       object-fit: cover;
       background: white;
     }
+    .contact-item .icon-avatar.buggy-avatar {
+      background: var(--buggy);
+      color: white;
+      font-size: 1.2rem;
+    }
     .contact-item .info strong {
       display: block;
       font-size: 0.9rem;
@@ -675,6 +692,12 @@ Welcome to Guraidhoo Island
       font-size: 0.85rem;
       color: var(--accent);
       font-weight: 500;
+    }
+    .contact-item.buggy-item:hover {
+      border-color: var(--buggy);
+    }
+    .contact-item.buggy-item .info span {
+      color: var(--buggy);
     }
 
     footer {
@@ -721,9 +744,9 @@ Welcome to Guraidhoo Island
   <div class="controls">
     <div class="controls-inner">
       <div class="control-group">
-        <label>Direction</label>
+        <label>Route</label>
         <select id="direction">
-          <option value="all">Both Directions</option>
+          <option value="all">Both Routes</option>
           <option value="to-male">Guraidhoo → Male</option>
           <option value="to-guraidhoo">Male → Guraidhoo</option>
         </select>
@@ -774,7 +797,7 @@ Welcome to Guraidhoo Island
       </div>
     </div>
 
-    <!-- Live Tracking & Onboard Entertainment Grid -->
+    <!-- Live Tracking & Entertainment Grid -->
     <div class="tracking-entertainment-grid">
       <!-- Live Tracking -->
       <div class="live-tracking">
@@ -829,8 +852,9 @@ Welcome to Guraidhoo Island
       <div class="cards" id="to-guraidhoo-cards"></div>
     </div>
 
+    <!-- Contact Ferry Operators -->
     <div class="contacts">
-      <h3>Contact Operators</h3>
+      <h3>Contact Ferry Operators</h3>
       <div class="contact-grid">
         <a class="contact-item escape" href="tel:+9607994699">
           <img src="escape-logo.jpg" alt="Escape" />
@@ -846,10 +870,21 @@ Welcome to Guraidhoo Island
         </a>
       </div>
     </div>
+
+    <!-- Buggy Service Booking -->
+    <div class="buggy-service">
+      <h3>🛺 Island Buggy Hiring Service</h3>
+      <div class="contact-grid">
+        <a class="contact-item buggy-item" href="tel:+9607994699">
+          <div class="icon-avatar buggy-avatar">🛺</div>
+          <div class="info"><strong>Guraidhoo Buggy</strong><span>Call to Book Ride</span></div>
+        </a>
+      </div>
+    </div>
   </main>
 
   <footer>
-    Schedules may change without notice. Please confirm with the operator before travel.
+    Schedules may change without prior notice. Please confirm with the operator before travel.
   </footer>
 
   <!-- Leaflet JS -->
@@ -1038,33 +1073,25 @@ Welcome to Guraidhoo Island
       let day = activeDayBtn ? activeDayBtn.dataset.day : "all";
 
       const { day: today, time: nowTime } = getCurrentDayAndTime();
-      let globalNextMinTime = null;
+      
+      // Separate Next Ferry Detection for BOTH directions
+      let nextFerries = {
+        "to-male": null,
+        "to-guraidhoo": null
+      };
 
       ["to-male", "to-guraidhoo"].forEach(dir => {
         if (day === "all" || day === today) {
-          for (const item of schedule[dir]) {
+          const sortedDirection = [...schedule[dir]].sort((a, b) => a.time.localeCompare(b.time));
+          for (const item of sortedDirection) {
             if (item.time > nowTime && daysInclude(item.days, today)) {
-              if (!globalNextMinTime || item.time < globalNextMinTime) {
-                globalNextMinTime = item.time;
+              if (!nextFerries[dir] || item.time < nextFerries[dir].time) {
+                nextFerries[dir] = { ...item, direction: dir };
               }
-              break;
             }
           }
         }
       });
-
-      let nextFerriesList = [];
-      if (globalNextMinTime) {
-        ["to-male", "to-guraidhoo"].forEach(dir => {
-          if (day === "all" || day === today) {
-            schedule[dir].forEach(item => {
-              if (item.time === globalNextMinTime && daysInclude(item.days, today)) {
-                nextFerriesList.push({ ...item, direction: dir });
-              }
-            });
-          }
-        });
-      }
 
       ["to-male", "to-guraidhoo"].forEach(dir => {
         const section = document.getElementById(`${dir}-section`);
@@ -1099,7 +1126,8 @@ Welcome to Guraidhoo Island
           `;
         } else {
           container.innerHTML = items.map(item => {
-            const isNext = nextFerriesList.some(nf => nf.time === item.time && nf.operator === item.operator && nf.direction === dir);
+            const nextItem = nextFerries[dir];
+            const isNext = nextItem && nextItem.time === item.time && nextItem.operator === item.operator;
             let iconMarkup = `<img src="${item.operator}-logo.jpg" alt="${operatorNames[item.operator]}" />`;
             return `
               <div class="card ${item.operator}${isNext ? ' next-ferry' : ''}">
@@ -1116,16 +1144,30 @@ Welcome to Guraidhoo Island
         }
       });
 
+      // Update Top Dynamic Next Ferry Banner
       const banner = document.getElementById("next-ferry-banner");
-      if (nextFerriesList.length > 0) {
-        banner.classList.remove("hidden");
-        const detailsText = nextFerriesList.map(nf => `${operatorNames[nf.operator]} (${nf.direction === "to-male" ? "Guraidhoo → Male" : "Male → Guraidhoo"})`).join(" & ");
-        banner.innerHTML = `
-          <div>
-            <div class="label">Next Upcoming Ferry · Maldives Time</div>
-            <div class="details">${globalNextMinTime} · ${detailsText}</div>
+      let bannerContent = "";
+
+      if (nextFerries["to-male"]) {
+        bannerContent += `
+          <div class="banner-col">
+            <div class="label">Next: Guraidhoo → Male</div>
+            <div class="details">${nextFerries["to-male"].time} · ${operatorNames[nextFerries["to-male"].operator]}</div>
           </div>
         `;
+      }
+      if (nextFerries["to-guraidhoo"]) {
+        bannerContent += `
+          <div class="banner-col">
+            <div class="label">Next: Male → Guraidhoo</div>
+            <div class="details">${nextFerries["to-guraidhoo"].time} · ${operatorNames[nextFerries["to-guraidhoo"].operator]}</div>
+          </div>
+        `;
+      }
+
+      if (bannerContent) {
+        banner.classList.remove("hidden");
+        banner.innerHTML = bannerContent;
       } else {
         banner.classList.add("hidden");
       }
