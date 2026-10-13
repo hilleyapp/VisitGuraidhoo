@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+Welcome to Guraidhoo Island
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -877,7 +877,7 @@
       <div class="contact-grid">
         <a class="contact-item buggy-item" href="tel:+9607994699">
           <div class="icon-avatar buggy-avatar">🛺</div>
-          <div class="info"><strong>Guraidhoo Buggy</strong><span>Call to Book Ride</span></div>
+          <div class="info"><strong>Coming soon...</strong><span>Ready to Book Your Ride</span></div>
         </a>
       </div>
     </div>
