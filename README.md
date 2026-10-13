@@ -1074,18 +1074,24 @@ Welcome to Guraidhoo Island
 
       const { day: today, time: nowTime } = getCurrentDayAndTime();
       
+      // Store arrays of next ferries per direction to handle multiple operators at the same time
       let nextFerries = {
-        "to-male": null,
-        "to-guraidhoo": null
+        "to-male": [],
+        "to-guraidhoo": []
       };
 
       ["to-male", "to-guraidhoo"].forEach(dir => {
         if (day === "all" || day === today) {
           const sortedDirection = [...schedule[dir]].sort((a, b) => a.time.localeCompare(b.time));
+          let minTime = null;
+          
           for (const item of sortedDirection) {
             if (item.time > nowTime && daysInclude(item.days, today)) {
-              if (!nextFerries[dir] || item.time < nextFerries[dir].time) {
-                nextFerries[dir] = { ...item, direction: dir };
+              if (!minTime) {
+                minTime = item.time;
+              }
+              if (item.time === minTime) {
+                nextFerries[dir].push(item);
               }
             }
           }
@@ -1125,8 +1131,7 @@ Welcome to Guraidhoo Island
           `;
         } else {
           container.innerHTML = items.map(item => {
-            const nextItem = nextFerries[dir];
-            const isNext = nextItem && nextItem.time === item.time && nextItem.operator === item.operator;
+            const isNext = nextFerries[dir].some(nf => nf.time === item.time && nf.operator === item.operator);
             let iconMarkup = `<img src="${item.operator}-logo.jpg" alt="${operatorNames[item.operator]}" />`;
             return `
               <div class="card ${item.operator}${isNext ? ' next-ferry' : ''}">
@@ -1146,19 +1151,23 @@ Welcome to Guraidhoo Island
       const banner = document.getElementById("next-ferry-banner");
       let bannerContent = "";
 
-      if (nextFerries["to-male"]) {
+      if (nextFerries["to-male"].length > 0) {
+        const timeVal = nextFerries["to-male"][0].time;
+        const opNames = nextFerries["to-male"].map(nf => operatorNames[nf.operator]).join(" & ");
         bannerContent += `
           <div class="banner-col">
             <div class="label">Next: Guraidhoo → Male</div>
-            <div class="details">${nextFerries["to-male"].time} · ${operatorNames[nextFerries["to-male"].operator]}</div>
+            <div class="details">${timeVal} · ${opNames}</div>
           </div>
         `;
       }
-      if (nextFerries["to-guraidhoo"]) {
+      if (nextFerries["to-guraidhoo"].length > 0) {
+        const timeVal = nextFerries["to-guraidhoo"][0].time;
+        const opNames = nextFerries["to-guraidhoo"].map(nf => operatorNames[nf.operator]).join(" & ");
         bannerContent += `
           <div class="banner-col">
             <div class="label">Next: Male → Guraidhoo</div>
-            <div class="details">${nextFerries["to-guraidhoo"].time} · ${operatorNames[nextFerries["to-guraidhoo"].operator]}</div>
+            <div class="details">${timeVal} · ${opNames}</div>
           </div>
         `;
       }
