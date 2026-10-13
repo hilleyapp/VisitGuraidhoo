@@ -62,40 +62,40 @@ Welcome to Guraidhoo Island
 
     /* Header Photo Banner */
     header {
-      background: linear-gradient(135deg, rgba(2, 119, 189, 0.85) 0%, rgba(0, 131, 143, 0.85) 50%, rgba(0, 105, 92, 0.85) 100%),
-                  url('banner.jpg') center/cover no-repeat;
+      background: linear-gradient(135deg, rgba(2, 119, 189, 0.75) 0%, rgba(0, 131, 143, 0.75) 50%, rgba(0, 105, 92, 0.75) 100%),
+                  url('Top-banner.jpg') center/cover no-repeat;
       color: white;
-      padding: 2.5rem 1.5rem 2rem;
+      padding: 3rem 1.5rem 2.5rem;
       text-align: center;
       box-shadow: 0 4px 16px rgba(0,0,0,0.2);
       position: relative;
     }
     header h1 {
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: 800;
       letter-spacing: 0.5px;
       margin-bottom: 0.2rem;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      text-shadow: 0 2px 6px rgba(0,0,0,0.5);
     }
     header p {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       opacity: 0.95;
       font-weight: 500;
-      margin-bottom: 0.8rem;
-      text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+      margin-bottom: 0.9rem;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.5);
     }
     .live-clock {
       display: inline-flex;
       align-items: center;
       gap: 0.4rem;
-      background: rgba(0, 0, 0, 0.35);
+      background: rgba(0, 0, 0, 0.45);
       backdrop-filter: blur(4px);
       padding: 0.35rem 0.9rem;
       border-radius: 20px;
       font-size: 0.82rem;
       font-weight: 600;
       letter-spacing: 0.3px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.25);
     }
 
     /* Theme Toggle */
@@ -103,9 +103,9 @@ Welcome to Guraidhoo Island
       position: absolute;
       top: 1.2rem;
       right: 1.2rem;
-      background: rgba(0, 0, 0, 0.35);
+      background: rgba(0, 0, 0, 0.45);
       backdrop-filter: blur(4px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.25);
       color: white;
       padding: 0.4rem 0.8rem;
       border-radius: 20px;
@@ -116,7 +116,7 @@ Welcome to Guraidhoo Island
       align-items: center;
       gap: 0.3rem;
     }
-    .theme-toggle:hover { background: rgba(0, 0, 0, 0.5); }
+    .theme-toggle:hover { background: rgba(0, 0, 0, 0.65); }
 
     /* Weather Widget */
     .weather-widget {
@@ -877,7 +877,7 @@ Welcome to Guraidhoo Island
       <div class="contact-grid">
         <a class="contact-item buggy-item" href="tel:+9607994699">
           <div class="icon-avatar buggy-avatar">🛺</div>
-          <div class="info"><strong>Coming soon...</strong><span>Ready to Book Your Ride</span></div>
+          <div class="info"><strong>Guraidhoo Buggy</strong><span>Call to Book Ride</span></div>
         </a>
       </div>
     </div>
@@ -1074,7 +1074,6 @@ Welcome to Guraidhoo Island
 
       const { day: today, time: nowTime } = getCurrentDayAndTime();
       
-      // Separate Next Ferry Detection for BOTH directions
       let nextFerries = {
         "to-male": null,
         "to-guraidhoo": null
@@ -1144,7 +1143,6 @@ Welcome to Guraidhoo Island
         }
       });
 
-      // Update Top Dynamic Next Ferry Banner
       const banner = document.getElementById("next-ferry-banner");
       let bannerContent = "";
 
