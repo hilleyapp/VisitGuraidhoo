@@ -901,7 +901,7 @@ Welcome to Guraidhoo Island
         <a class="contact-item dining-item" href="tel:+9607257878">
           <img src="muranga-logo.jpg" alt="Muranga Restaurant" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
           <div class="icon-avatar dining-avatar" style="display:none;">🍽️</div>
-          <div class="info"><strong>Muranga Restaurant</strong><span>+960 725 7878</span></div>
+          <div class="info"><strong>Muranga Restaurant by H78</strong><span>+960 725 7878</span></div>
         </a>
         <a class="contact-item dining-item" href="tel:+9609888339">
           <img src="amore-logo.jpg" alt="Amore Cafe" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
