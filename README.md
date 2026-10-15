@@ -31,6 +31,7 @@ Welcome to Guraidhoo Island
       --vmarine: #00897B;
       --hawks: #E65100;
       --buggy: #43A047;
+      --dining: #D81B60;
       --bg: #F4F8FB;
       --card: #FFFFFF;
       --text: #1A2A3A;
@@ -628,8 +629,8 @@ Welcome to Guraidhoo Island
       font-weight: 600;
     }
 
-    /* Contacts & Buggy Service Section */
-    .contacts, .buggy-service {
+    /* Contacts, Buggy Service & Dining Section */
+    .contacts, .buggy-service, .dining-service {
       margin-top: 1.5rem;
       background: var(--card);
       border-radius: 14px;
@@ -639,7 +640,7 @@ Welcome to Guraidhoo Island
     }
     .contacts { margin-top: 2.5rem; }
     
-    .contacts h3, .buggy-service h3 {
+    .contacts h3, .buggy-service h3, .dining-service h3 {
       font-size: 0.85rem;
       text-transform: uppercase;
       letter-spacing: 0.8px;
@@ -653,7 +654,7 @@ Welcome to Guraidhoo Island
     }
     .contact-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 0.8rem;
     }
     .contact-item {
@@ -683,13 +684,18 @@ Welcome to Guraidhoo Island
       color: white;
       font-size: 1.2rem;
     }
+    .contact-item .icon-avatar.dining-avatar {
+      background: var(--dining);
+      color: white;
+      font-size: 1.1rem;
+    }
     .contact-item .info strong {
       display: block;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: var(--text);
     }
     .contact-item .info span {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: var(--accent);
       font-weight: 500;
     }
@@ -698,6 +704,12 @@ Welcome to Guraidhoo Island
     }
     .contact-item.buggy-item .info span {
       color: var(--buggy);
+    }
+    .contact-item.dining-item:hover {
+      border-color: var(--dining);
+    }
+    .contact-item.dining-item .info span {
+      color: var(--dining);
     }
 
     footer {
@@ -878,6 +890,33 @@ Welcome to Guraidhoo Island
         <a class="contact-item buggy-item" href="tel:+9607994699">
           <div class="icon-avatar buggy-avatar">🛺</div>
           <div class="info"><strong>Coming soon</strong><span>Ready to Book Your Ride</span></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Cafés & Dining Section -->
+    <div class="dining-service">
+      <h3>☕ Cafés & Dining</h3>
+      <div class="contact-grid">
+        <a class="contact-item dining-item" href="tel:+9607257878">
+          <img src="muranga-logo.jpg" alt="Muranga Restaurant" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="icon-avatar dining-avatar" style="display:none;">🍽️</div>
+          <div class="info"><strong>Muranga Restaurant</strong><span>+960 725 7878</span></div>
+        </a>
+        <a class="contact-item dining-item" href="tel:+9609888339">
+          <img src="amore-logo.jpg" alt="Amore Cafe" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="icon-avatar dining-avatar" style="display:none;">☕</div>
+          <div class="info"><strong>Amore - The Island Cafe</strong><span>+960 988 8339</span></div>
+        </a>
+        <a class="contact-item dining-item" href="tel:+9607372999">
+          <img src="chambao-logo.jpg" alt="Chambao Cafe" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="icon-avatar dining-avatar" style="display:none;">🍹</div>
+          <div class="info"><strong>Chambao - Cafe & Retreat</strong><span>+960 737 2999</span></div>
+        </a>
+        <a class="contact-item dining-item" href="tel:+9609663694">
+          <img src="thundi-logo.jpg" alt="Thundi Cafe" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="icon-avatar dining-avatar" style="display:none;">🏝️</div>
+          <div class="info"><strong>Thundi Cafe</strong><span>+960 966 3694</span></div>
         </a>
       </div>
     </div>
@@ -1074,7 +1113,6 @@ Welcome to Guraidhoo Island
 
       const { day: today, time: nowTime } = getCurrentDayAndTime();
       
-      // Store arrays of next ferries per direction to handle multiple operators at the same time
       let nextFerries = {
         "to-male": [],
         "to-guraidhoo": []
