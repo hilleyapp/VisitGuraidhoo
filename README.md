@@ -3,19 +3,19 @@ Welcome to Guraidhoo Island
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ferry Schedule • Guraidhoo ↔ Male</title>
+  <title>GuraidhooGo • Ferry Schedule • Guraidhoo ↔ Male</title>
   
   <!-- Open Graph / Social Media Preview Meta Tags -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://hilleyapp.github.io/VisitGuraidhoo" />
-  <meta property="og:title" content="Ferry Schedule • Guraidhoo ↔ Male" />
+  <meta property="og:title" content="GuraidhooGo • Guraidhoo ↔ Male Ferry Schedule" />
   <meta property="og:description" content="Check live ferry schedules, live tracking, weather, and onboard entertainment for Guraidhoo and Malé." />
   <meta property="og:image" content="https://hilleyapp.github.io/VisitGuraidhoo/preview.jpg" />
 
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://hilleyapp.github.io/VisitGuraidhoo" />
-  <meta name="twitter:title" content="Ferry Schedule • Guraidhoo ↔ Male" />
+  <meta name="twitter:title" content="GuraidhooGo • Guraidhoo ↔ Male Ferry Schedule" />
   <meta name="twitter:description" content="Check live ferry schedules, live tracking, weather, and onboard entertainment for Guraidhoo and Malé." />
   <meta name="twitter:image" content="https://hilleyapp.github.io/VisitGuraidhoo/preview.jpg" />
 
@@ -66,24 +66,26 @@ Welcome to Guraidhoo Island
       background: linear-gradient(135deg, rgba(2, 119, 189, 0.75) 0%, rgba(0, 131, 143, 0.75) 50%, rgba(0, 105, 92, 0.75) 100%),
                   url('Top-banner.jpg') center/cover no-repeat;
       color: white;
-      padding: 3rem 1.5rem 2.5rem;
+      padding: 3.2rem 1.5rem 2.8rem;
       text-align: center;
       box-shadow: 0 4px 16px rgba(0,0,0,0.2);
       position: relative;
     }
     header h1 {
-      font-size: 2.2rem;
+      font-size: 3.2rem;
       font-weight: 800;
       letter-spacing: 0.5px;
       margin-bottom: 0.2rem;
       text-shadow: 0 2px 6px rgba(0,0,0,0.5);
     }
-    header p {
-      font-size: 1.15rem;
-      opacity: 0.95;
+    .tagline {
+      font-size: 1.05rem;
       font-weight: 500;
+      letter-spacing: 0.8px;
+      opacity: 0.95;
       margin-bottom: 0.9rem;
-      text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+      text-transform: uppercase;
     }
     .live-clock {
       display: inline-flex;
@@ -122,7 +124,7 @@ Welcome to Guraidhoo Island
     /* Weather Widget */
     .weather-widget {
       max-width: 960px;
-      margin: -1.2rem auto 1.2rem;
+      margin: -1.2rem auto 0.6rem;
       padding: 0 1rem;
       position: relative;
       z-index: 11;
@@ -165,6 +167,16 @@ Welcome to Guraidhoo Island
     }
     .weather-stats strong {
       color: var(--text);
+    }
+
+    /* Sub-route banner under weather */
+    .route-sub-banner {
+      text-align: center;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 1rem;
+      letter-spacing: 0.3px;
     }
 
     /* Controls */
@@ -720,7 +732,7 @@ Welcome to Guraidhoo Island
     }
 
     @media (max-width: 600px) {
-      header h1 { font-size: 1.4rem; }
+      header h1 { font-size: 2.4rem; }
       .controls-inner { flex-direction: column; align-items: stretch; }
       .day-btns { justify-content: center; }
       .cards { grid-template-columns: 1fr; }
@@ -731,8 +743,8 @@ Welcome to Guraidhoo Island
 <body>
   <header>
     <button class="theme-toggle" id="theme-toggle">🌙 Dark</button>
-    <h1>Ferry Schedule</h1>
-    <p>Guraidhoo ↔ Male ↔ Guraidhoo</p>
+    <h1>GuraidhooGo</h1>
+    <div class="tagline">Your Island. Everything You Need.</div>
     <div class="live-clock" id="live-clock">🕒 Loading local time...</div>
   </header>
 
@@ -751,6 +763,11 @@ Welcome to Guraidhoo Island
         <div>Wind: <strong>Gentle breeze</strong></div>
       </div>
     </div>
+  </div>
+
+  <!-- Route Sub-banner -->
+  <div class="route-sub-banner">
+    Guraidhoo ↔ Male ↔ Guraidhoo
   </div>
 
   <div class="controls">
@@ -901,7 +918,7 @@ Welcome to Guraidhoo Island
         <a class="contact-item dining-item" href="tel:+9607257878">
           <img src="muranga-logo.jpg" alt="Muranga Restaurant" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
           <div class="icon-avatar dining-avatar" style="display:none;">🍽️</div>
-          <div class="info"><strong>Muranga Restaurant by H78</strong><span>+960 725 7878</span></div>
+          <div class="info"><strong>Muranga Restaurant</strong><span>+960 725 7878</span></div>
         </a>
         <a class="contact-item dining-item" href="tel:+9609888339">
           <img src="amore-logo.jpg" alt="Amore Cafe" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
